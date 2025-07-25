@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>parla girls shop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 50%, #ff9ff3 100%);
+            min-height: 100vh;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header Menu */
+        .header-menu {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .menu-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .header-menu a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 12px 24px;
+            border-radius: 30px;
+            transition: all 0.4s ease;
+            position: relative;
+            background: linear-gradient(45deg, transparent, transparent);
+            border: 2px solid transparent;
+            overflow: hidden;
+        }
+
+        .header-menu a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: right 0.6s ease;
+        }
+
+        .header-menu a:hover::before {
+            right: 100%;
+        }
+
+        .header-menu a:hover {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(238, 90, 36, 0.4);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Header Content */
+        .header-content {
+            text-align: center;
+            padding: 150px 20px 80px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .header-content h1 {
+            font-size: 4em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #fff, #ff9ff3, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+            position: relative;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
+            to { text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 159, 243, 0.5); }
+        }
+
+        .header-content p {
+            font-size: 1.3em;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            line-height: 1.8;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(238, 90, 36, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: right 0.6s ease;
+        }
+
+        .btn:hover::before {
+            right: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(238, 90, 36, 0.6);
+            background: linear-gradient(45deg, #ee5a24, #ff6b6b);
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.5s ease;
+            cursor: pointer;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .gallery img:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Home Content */
+        .home-content {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            margin: 40px 20px;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .home-content h1 {
+            font-size: 2.5em;
+            color: white;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .home-content h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            border-radius: 2px;
+        }
+
+        /* Featured Product */
+        .home {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .home-img {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .home-img::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 107, 107, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        .home-img:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .home-img img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 15px;
+            transition: all 0.5s ease;
+        }
+
+        .home-img:hover img {
+            transform: scale(1.05);
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        /* Product Categories */
+        .product-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 107, 0.2), transparent);
+            transition: right 0.6s ease;
+        }
+
+        .category-card:hover::before {
+            right: 100%;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+        }
+
+        .category-card h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .category-card p {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .header-menu a {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .header-content h1 {
+                font-size: 2.5em;
+            }
+
+            .header-content p {
+                font-size: 1.1em;
+            }
+
+.glow-image {
+  animation: pulseGlow 2s infinite;
+}
+
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .home-content h1 {
+                font-size: 2em;
+            }
+
+            .product-categories {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 15px;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .glow-image {
+            width: 500px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            animation: pulseGlow 2s infinite;
+            filter: drop-shadow(0 0 15px rgba(255, 255, 200, 0.8));
+            border-radius: 50%;
+            transition: all 0.3s ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                filter: drop-shadow(0 0 10px rgba(255, 255, 180, 0.5));
+            }
+            50% {
+                filter: drop-shadow(0 0 30px rgba(255, 255, 200, 1));
+            }
+            100% {
+                filter: drop-shadow(0 0 10px rgba(255, 255, 180, 0.5));
+            }
+        }
+    
+    </style>
+</head>
+<body>
+    <!-- Header Menu -->
+    <div class="header-menu">
+        <div class="menu-container">
+            <a href="https://basalam.com/parla_salesroom/product/14611899">کراپ</a>
+            <a href="https://basalam.com/parla_salesroom/product/14166371">تیشرت</a>
+            <a href="https://basalam.com/parla_salesroom/product/15699582">شلوارک</a>
+            <a href="https://basalam.com/parla_salesroom/product/13887349">تاپ</a>
+            <a href="https://basalam.com/parla_salesroom/product/16668741">زمستونی</a>
+            <a href="https://basalam.com/parla_salesroom">ارتباط با ما</a>
+            <a href="#about">درباره ما</a>
+        </div>
+    </div>
+
+    <!-- Header Content -->
+    <div class="header-content">
+        <img src="ParlaLogo.png" class="glow-image"> 
+        <h1>PARLA GIRLS SHOP</h1>
+        <p>
+            پارلا به معنای درخشان <br>
+            تاپ | کراپ | شلوارک های وارداتی <br>
+            تمامی عکس ها غیر ژورنالی میباشد
+        </p>
+        <a href="https://basalam.com/parla_salesroom" class="btn">مشاهده محصولات</a>
+    </div>
+
+    <!-- Product Categories -->
+    <div class="product-categories">
+        <div class="category-card" onclick="location.href='https://basalam.com/parla_salesroom/product/14611899'">
+            <h3>کراپ</h3>
+            <p>جدیدترین مدل‌های کراپ</p>
+        </div>
+        <div class="category-card" onclick="location.href='https://basalam.com/parla_salesroom/product/14166371'">
+            <h3>تیشرت</h3>
+            <p>تیشرت‌های شیک و راحت</p>
+        </div>
+        <div class="category-card" onclick="location.href='https://basalam.com/parla_salesroom/product/15699582'">
+            <h3>شلوارک</h3>
+            <p>شلوارک‌های وارداتی</p>
+        </div>
+        <div class="category-card" onclick="location.href='https://basalam.com/parla_salesroom/product/13887349'">
+            <h3>تاپ</h3>
+            <p>تاپ‌های متنوع و زیبا</p>
+        </div>
+        <div class="category-card" onclick="location.href='https://basalam.com/parla_salesroom/product/16668741'">
+            <h3>زمستونی</h3>
+            <p>لباس‌های گرم زمستانی</p>
+        </div>
+    </div>
+
+    <!-- Gallery -->
+    <div class="gallery">
+        <img src="https://statics.basalam.com/public-35/users/YA8y6E/09-16/bL0qHNolROWDHA5w5zBmpuJe3i6wcbyI5BC8ShIxasK6wcNSAG.jpg_800X800X70.jpg" alt="محصول 1">
+        <img src="https://statics.basalam.com/public-20/users/YA8y6E/05-25/damkWWHfdoCMwDWMeMLGO22zNofOKidV5d2nJupCWP1xytA9aE.jpg_800X800X70.jpg" alt="محصول 2">
+        <img src="https://statics.basalam.com/public-19/users/YA8y6E/05-02/9vE1sY05W91aFIpkyGpSvKbySvHN2v03lcheuTfWZAdhLzGD6Y.jpg_800X800X70.jpg" alt="محصول 3">
+        <img src="https://statics.basalam.com/public-66/users/YA8y6E/02-28/LN0qB8qliPo2NJD7R5FuQ0wQgVmJ8lLGemFFfnYShuBt8Gttdh.jpg_800X800X70.jpg" alt="محصول 4">
+        <img src="https://statics.basalam.com/public-35/users/YA8y6E/09-16/bL0qHNolROWDHA5w5zBmpuJe3i6wcbyI5BC8ShIxasK6wcNSAG.jpg_800X800X70.jpg" alt="محصول 5">
+    </div>
+
+    <!-- Home Content -->
+    <div class="home-content">
+        <h1>تخفیف‌های داغ تابستونی!</h1>
+    </div>
+
+    <!-- Featured Product -->
+    <section class="home">
+        <div class="home-img">
+            <img src="https://statics.basalam.com/public-19/users/YA8y6E/04-17/JtzeBGFvXapJwZg66AByhC0ZFHrnLiU4VdHvrUCd6XphKPHXy2.jpg_800X800X70.jpg" alt="تاپ گیپوری">
+        </div>
+    </section>
+
+    <script>
+        // Loading Animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.gallery img, .category-card, .home-img');
+            elements.forEach((el, index) => {
+                el.classList.add('loading');
+                el.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add click effect to buttons
+        document.querySelectorAll('.btn, .category-card').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    position: absolute;
+                    border-radius: 50%;
+                    background: rgba(255, 255, 255, 0.5);
+                    transform: scale(0);
+                    animation: ripple 0.6s ease-out;
+                    pointer-events: none;
+                `;
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Parallax effect for header
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const header = document.querySelector('.header-content');
+            if (header) {
+                header.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Image hover effects
+        document.querySelectorAll('.gallery img').forEach(img => {
+            img.addEventListener('mouseenter', function() {
+                this.style.filter = 'brightness(1.2) saturate(1.3)';
+            });
+            
+            img.addEventListener('mouseleave', function() {
+                this.style.filter = 'brightness(1) saturate(1)';
+            });
+        });
+    </script>
+</body>
+</html>
